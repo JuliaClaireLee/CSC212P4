@@ -54,7 +54,7 @@ public class CandyLand implements GameWorld {
 		secretCave.addExit(new Exit("tunnel", "you see a really deep hole and a licorice ladder leading downwards"));
 		secretCave.addExit(new Exit("rainbowroad", "Go back to the start!"));
 		Place tunnel = insert(Place.create("tunnel",
-				"You jump down the licorice ladder and end up in a dark tunnel.\n"+ "You are definitely stepping on gummy worms! ew!"));
+				"You jump down the licorice ladder and end up in a dark tunnel.\n"+ "You are definitely stepping on gummy worms! Ew!"));
 		tunnel.addExit(new Exit("secretCave", "Go back up the ladder!"));
 	}	
 		
