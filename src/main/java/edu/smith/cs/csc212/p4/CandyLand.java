@@ -36,11 +36,11 @@ public class CandyLand implements GameWorld {
 		candycaneLane.addExit(new Exit("treeHouse", "You see a candycane treehouse and a rope ladder leading up to it.\n"+ "Let's go inside."));
 		Place mountain = insert(Place.create("mountain","You reach the top of the sugar mountain.\n" + "It is a beautiful view at the top.\n" + 
 		"You see some winged horses nearby. "));
-		mountain.addExit(new Exit("treeHouse", "you ask the winged horses to take you to the tree house"));
+		mountain.addExit(new Exit("treeHouse", "You ask the winged horses to take you to the tree house"));
 		mountain.addExit(new Exit("road3", "Walk down the other side of the mountain to reach the main road"));
-		mountain.addExit(new Exit("gingerbreadHouse", "you see a gingerbread house 100 yards away. Let's go investigate"));
-		Place gingerbreadHouse = insert(Place.create("gingerbreadHouse","You reach the house.\n" + "it is locked!"));
-		gingerbreadHouse.addExit(new Exit("treeHouse", "you ask the winged horses to take you to the tree house"));
+		mountain.addExit(new Exit("gingerbreadHouse", "You see a gingerbread house 100 yards away. Let's go investigate!"));
+		Place gingerbreadHouse = insert(Place.create("gingerbreadHouse","You reach the house.\n" + "It is locked!"));
+		gingerbreadHouse.addExit(new Exit("treeHouse", "You ask the winged horses to take you to the tree house"));
 		gingerbreadHouse.addExit(new Exit("mountain", "Walk back where you came"));
 				
 		int roadDepth = 5;
