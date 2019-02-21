@@ -38,11 +38,15 @@ public class InteractiveFiction {
 
 			// Show a user the ways out of this place.
 			List<Exit> exits = here.getVisibleExits();
-			
 			for (int i=0; i<exits.size(); i++) {
 			    Exit e = exits.get(i);
 				System.out.println(" ["+i+"] " + e.getDescription());
 			}
+			
+			
+			
+		
+			
 
 			// Figure out what the user wants to do, for now, only "quit" is special.
 			List<String> words = input.getUserWords(">");
@@ -54,6 +58,8 @@ public class InteractiveFiction {
 				continue;
 			}
 			
+		
+			
 			// Get the word they typed as lowercase, and no spaces.
 			String action = words.get(0).toLowerCase().trim();
 			
@@ -62,8 +68,26 @@ public class InteractiveFiction {
 					break;
 				} else {
 					continue;
+				}	
 				}
-			}
+			
+			if (action.equals("search")) {
+				System.out.println(here.getDescription());
+				List<SecretExit> Sexits = here.getInvisibleExits();
+				for (int i=0; i<exits.size() & i<Sexits.size(); i++) {
+				    Exit e = exits.get(i);
+					System.out.println(" ["+i+"] " + e.getDescription());
+					SecretExit Se = Sexits.get(i);
+					System.out.println(" ["+(i + exits.size())+"] " + Se.getDescription());	
+					
+				}
+				
+				
+			}	
+					
+					
+					    
+					
 			
 			// From here on out, what they typed better be a number!
 			Integer exitNum = null;
@@ -82,6 +106,8 @@ public class InteractiveFiction {
 			// Move to the room they indicated.
 			Exit destination = exits.get(exitNum);
 			place = destination.getTarget();
+			
+			
 		}
 
 		// You get here by "quit" or by reaching a Terminal Place.

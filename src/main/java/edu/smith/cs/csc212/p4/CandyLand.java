@@ -28,25 +28,39 @@ public class CandyLand implements GameWorld {
 						"You want to follow the amazing scent, but it is too dark to go any further."
 						));
 		gumdropPass.addExit(new Exit("rainbowroad", "Go back to the way you came!"));
-
+		gumdropPass.addsecretExit(new SecretExit("gingerbreadHouse", "You find a flashflight and folllow the scent"));
+		
+		
 		Place candycaneLane = insert(Place.create("candycaneLane",
 				"You end up in a field of Candycanes and see a mountain ahead.\n" + "It's beautiful here."));
 		candycaneLane.addExit(new Exit("rainbowroad", "Go back to the way you came!"));
 		candycaneLane.addExit(new Exit("mountain", "Keep walking towards the mountain."));
 		candycaneLane.addExit(new Exit("treeHouse", "You see a candycane treehouse and a rope ladder leading up to it.\n"+ "Let's go inside."));
+		
 		Place mountain = insert(Place.create("mountain","You reach the top of the sugar mountain.\n" + "It is a beautiful view at the top.\n" + 
 		"You see some winged horses nearby. "));
 		mountain.addExit(new Exit("treeHouse", "You ask the winged horses to take you to the tree house"));
 		mountain.addExit(new Exit("road3", "Walk down the other side of the mountain to reach the main road"));
 		mountain.addExit(new Exit("gingerbreadHouse", "You see a gingerbread house 100 yards away. Let's go investigate!"));
+		
 		Place gingerbreadHouse = insert(Place.create("gingerbreadHouse","You reach the house.\n" + "It is locked!"));
 		gingerbreadHouse.addExit(new Exit("treeHouse", "You ask the winged horses to take you to the tree house"));
 		gingerbreadHouse.addExit(new Exit("mountain", "Walk back where you came"));
-				
+		gingerbreadHouse.addsecretExit(new SecretExit("ZombieDen", "You see a zombie gingerbread man in the distance. Follow it!"));
+		gingerbreadHouse.addsecretExit(new SecretExit("treeHouse", "You use the key to get inside" ));
+		
+		
+		Place ZombieDen = insert(Place.create("ZombieDen", "You have followed the zombie and he wants to fight you. You also see a key on the ground!"));
+		ZombieDen.addExit(new Exit("death", "You fight back."));
+		ZombieDen.addsecretExit(new SecretExit("gingerbreadHouse","You find a gun and shoot the zombie and eat him!"));
+		ZombieDen.addExit(new Exit("road3","You run away."));
+		
+		Place death = insert(Place.terminal("death", "The zombie has killed you but you don't become a zombie :( \n " + "You lose!"));
+		
 		int roadDepth = 5;
 		int lastroadPart = roadDepth - 1;
 		for (int i=0; i<roadDepth; i++) {
-			Place roadPart = insert(Place.create("road"+i, "Let's keep walking on the main road"));
+			Place roadPart = insert(Place.create("road"+i, "on the main road"));
 			if (i == 0) {
 				roadPart.addExit(new Exit("rainbowroad", "Go back."));
 			} else {
@@ -62,10 +76,13 @@ public class CandyLand implements GameWorld {
 				"You end up in a  Treehouse made of candycanes and it smells like hot cocoa."));
 		treeHouse.addExit(new Exit("candycaneLane", "you see a rope ladder leading downwards"));
 		treeHouse.addExit(new Exit("rainbowroad", "Drink some hot cocoa and go back to the start"));
+		
 		Place secretCave = insert(Place.create("secretCave",
 				"You end up in a dark chocolate cave.\n" + "It's dark but smells good."));
 		secretCave.addExit(new Exit("tunnel", "you see a really deep hole and a licorice ladder leading downwards"));
 		secretCave.addExit(new Exit("rainbowroad", "Go back to the start!"));
+		
+		
 		Place tunnel = insert(Place.create("tunnel",
 				"You jump down the licorice ladder and end up in a dark fudge tunnel.\n"+ "You are definitely stepping on gummy worms! Ew! \n"
 						+ "You turn around and the ladder is gone! you are trapped"));
@@ -85,6 +102,7 @@ public class CandyLand implements GameWorld {
 				tunnelPart.addExit(new Exit("kingKandy", "You finally find an exit."));
 			}
 		}
+		
 		Place kingKandy = insert(Place.terminal("kingKandy",
 				"You step out from the darkness of the fudge tunnel and find yourself at King Kandy's castle.\n"
 						+ "Just in time for the party! You win!"));

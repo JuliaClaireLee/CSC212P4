@@ -14,6 +14,7 @@ public class Place {
 	 * This is a list of places we can get to from this place.
 	 */
 	private List<Exit> exits;
+	private List<SecretExit> secretexits;
 	/**
 	 * This is the identifier of the place.
 	 */
@@ -37,6 +38,7 @@ public class Place {
 		this.id = id;
 		this.description = description;
 		this.exits = new ArrayList<>();
+		this.secretexits = new ArrayList<>();
 		this.terminal = terminal;
 	}
 	
@@ -47,7 +49,9 @@ public class Place {
 	public void addExit(Exit exit) {
 		this.exits.add(exit);
 	}
-	
+	public void addsecretExit(SecretExit secretexit) {
+		this.secretexits.add(secretexit);
+	}
 	/**
 	 * For gameplay, whether this place ends the game.
 	 * @return true if this is the end.
@@ -77,8 +81,27 @@ public class Place {
 	 * @return all the exits from this place.
 	 */
 	public List<Exit> getVisibleExits() {
-		return Collections.unmodifiableList(exits);
-	}
+		  List<Exit> output = new ArrayList<>();
+		  for (Exit e : this.exits) {
+		    if (e.isSecret()) {
+		      // don't show to player
+		    } else {
+		      output.add(e);
+		    }
+		  }
+		return output;
+		}
+	public List<SecretExit> getInvisibleExits() {
+		  List<SecretExit> output = new ArrayList<>();
+		  for (SecretExit Se : this.secretexits) {
+		    if (Se.isSecret()) {
+		      // don't show to player
+		    } else {
+		      output.add(Se);
+		    }
+		  }
+		return output;
+		}
 	
 	/**
 	 * This is a terminal location (good or bad).
@@ -123,5 +146,12 @@ public class Place {
 		}
 		return false;
 	}
+	
+	public void search() {
+		  for (Exit e : this.exits) {
+		    // search makes it not secret any more if it's a SecretExit!
+		    e.search();
+		  }
+		}
 	
 }

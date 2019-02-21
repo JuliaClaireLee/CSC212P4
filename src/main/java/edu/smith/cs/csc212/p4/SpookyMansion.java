@@ -65,11 +65,7 @@ public class SpookyMansion implements GameWorld {
 		balcony.addExit(new Exit("attic", "Go back through the window"));
 		Place yard = insert(Place.create("yard", "You are in the yard and see a zombie in the distance."));
 		yard.addExit(new Exit("balcony", "go back."));
-		yard.addExit(new Exit("ZombieDen", "follow your zombie friend."));
-		Place ZombieDen = insert(Place.create("ZombieDen", "You have followed the zombie and he wants to fight you."));
-		ZombieDen.addExit(new Exit("Death", "You fight back."));
-		ZombieDen.addExit(new Exit("kitchen", "You offer the zombie some better food than human brains."));
-		Place Death = insert(Place.terminal("Death", "The zombie has killed you but you don't become a zombie :( "));
+
 		int hallwayDepth = 5;
 		int lastHallwayPart = hallwayDepth - 1;
 		for (int i=0; i<hallwayDepth; i++) {
